@@ -1,0 +1,19 @@
+<mixin>
+    <display-name>bodyStyleAttribute mixin</display-name>
+    <items>
+        <item-set name="bodyStyleAttribute">
+            <label>Body style attribute</label>
+            <occurrences minimum="0" maximum="0"/>
+            <items>
+                <input name="property" type="TextLine">
+                    <label>Property</label>
+                    <occurrences minimum="1" maximum="1"/>
+                </input>
+                <input name="value" type="TextLine">
+                    <label>Value</label>
+                    <occurrences minimum="0" maximum="1"/>
+                </input>
+            </items>
+        </item-set>
+    </items>
+</mixin>
