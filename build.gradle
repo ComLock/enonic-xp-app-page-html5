@@ -48,6 +48,11 @@ sourceSets {
 }
 
 
+task wrapper(type: Wrapper) {
+	gradleVersion = '4.10.3'
+}
+
+
 task webpack(type:NodeTask) {
     script = file('node_modules/webpack-cli/bin/cli.js')
     args = [
