@@ -1,6 +1,6 @@
 <mixin>
     <display-name>bodyStyleAttribute mixin</display-name>
-    <items>
+    <form>
         <item-set name="bodyStyleAttribute">
             <label>Body style attribute</label>
             <occurrences minimum="0" maximum="0"/>
@@ -15,5 +15,5 @@
                 </input>
             </items>
         </item-set>
-    </items>
+    </form>
 </mixin>

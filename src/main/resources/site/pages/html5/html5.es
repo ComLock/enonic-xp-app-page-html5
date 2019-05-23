@@ -1,9 +1,9 @@
 import {
-    doctype, html, head, body, div, render
+    doctype, html, head, title, body, div, render
 } from 'render-js';
-//import {toStr} from '/lib/enonic/util';
-import {forceArray} from '/lib/enonic/util/data';
-//import {dlv} from '/lib/enonic/util/object';
+//import {toStr} from '/lib/util';
+import {forceArray} from '/lib/util/data';
+//import {dlv} from '/lib/util/object';
 import {
     getContent as getCurrentContent,
     getSiteConfig as getCurrentSiteConfig
@@ -14,6 +14,7 @@ export function get(req) {
     //log.info(toStr({req});
     const siteConfig = getCurrentSiteConfig(); //log.info(toStr({siteConfig}));
     const content = getCurrentContent(); //log.info(toStr({content}));
+    const {displayName} = content;
     const pageConfig = content.page.config; //log.info(toStr({pageConfig}));
     const bodyStyleAttribute = siteConfig.bodyStyleAttribute || pageConfig.bodyStyleAttribute; //log.info(toStr({bodyStyleAttribute}));
     const {components} = content.page.regions.body; //log.info(toStr({components}));
@@ -21,7 +22,7 @@ export function get(req) {
         body: render([
             doctype(),
             html([
-                head(),
+                head(title(displayName)),
                 body({
                     style: bodyStyleAttribute
                         ? forceArray(bodyStyleAttribute)
