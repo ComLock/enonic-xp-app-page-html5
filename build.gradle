@@ -50,8 +50,8 @@ sourceSets {
 }
 
 
-task wrapper(type: Wrapper) {
-	gradleVersion = "${gradleVersion}"
+wrapper {
+    distributionUrl = "${gradleDistributionUrl}"
 }
 
 
