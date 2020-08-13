@@ -28,7 +28,7 @@ dependencies {
 
     include "com.enonic.xp:lib-portal:${xpVersion}"
 
-    include 'com.enonic.lib:lib-util:2.0.0-RC1'
+    include 'com.enonic.lib:lib-util:2.2.1'
 }
 
 
