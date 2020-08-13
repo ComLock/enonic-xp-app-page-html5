@@ -66,12 +66,19 @@ const SERVER_JS_CONFIG = {
                     compact: false,
                     minified: false,
                     plugins: [
+                        '@babel/plugin-proposal-object-rest-spread',
+                        '@babel/plugin-transform-object-assign',
                         'array-includes',
-                        'optimize-starts-with',
-                        'transform-object-assign',
-                        'transform-object-rest-spread'
+                        'optimize-starts-with'
                     ],
-                    presets: ['es2015']
+                    presets: [
+                        [
+                            '@babel/preset-env',
+                            {
+                                useBuiltIns: false // false means polyfill not required runtime
+                            }
+                        ]
+                    ]
                 } // options
             }] // use
         }] // rules

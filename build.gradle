@@ -62,7 +62,8 @@ task webpack(type:NodeTask) {
         '--config', 'webpack.config.babel.js'
     ]
 }
-webpack.dependsOn npmInstall
+webpack.dependsOn yarn_install
+webpack.mustRunAfter yarn_install
 assemble.dependsOn webpack
 assemble.mustRunAfter webpack
 
