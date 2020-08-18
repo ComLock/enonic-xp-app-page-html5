@@ -5,10 +5,12 @@
 import glob from 'glob';
 import path from 'path';
 
-
 //──────────────────────────────────────────────────────────────────────────────
 // Common
 //──────────────────────────────────────────────────────────────────────────────
+//const MODE = 'development';
+const MODE = 'production';
+
 const JS_EXTENSION_GLOB_BRACE = '*.{es,es6,mjs,jsx,flow,js}';
 const ASSETS_PATH_GLOB_BRACE = '{site/assets,assets}';
 
@@ -19,13 +21,11 @@ const context = path.resolve(__dirname, SRC_DIR);
 const extensions = ['.es', '.js', '.json']; // used in resolve
 const outputPath = path.join(__dirname, DST_DIR);
 
-
 //──────────────────────────────────────────────────────────────────────────────
 // Functions
 //──────────────────────────────────────────────────────────────────────────────
 //const toStr = v => JSON.stringify(v, null, 4);
 const dict = arr => Object.assign(...arr.map(([k, v]) => ({ [k]: v })));
-
 
 //──────────────────────────────────────────────────────────────────────────────
 // Server-side Javascript
@@ -41,7 +41,7 @@ const SERVER_JS_FILES = glob.sync(`${SRC_DIR}/**/${JS_EXTENSION_GLOB_BRACE}`, {
 });
 //console.log(`SERVER_JS_FILES:${toStr(SERVER_JS_FILES)}`);
 
-const SERVER_JS_ENTRY = dict(SERVER_JS_FILES.map(k => [
+const SERVER_JS_ENTRY = dict(SERVER_JS_FILES.map((k) => [
     k.replace(`${SRC_DIR}/`, '').replace(/\.[^.]*$/, ''), // name
     `.${k.replace(`${SRC_DIR}`, '')}` // source relative to context
 ]));
@@ -54,7 +54,7 @@ const SERVER_JS_CONFIG = {
         /^\//
     ],
     devtool: false, // Don't waste time generating sourceMaps
-    mode: 'production',
+    mode: MODE,
     module: {
         rules: [{
             test: /\.(es6?|js)$/, // Will need js for node module depenencies
@@ -100,7 +100,6 @@ const SERVER_JS_CONFIG = {
     } // resolve
 };
 //console.log(`SERVER_JS_CONFIG:${JSON.stringify(SERVER_JS_CONFIG, null, 4)}`);
-
 
 //──────────────────────────────────────────────────────────────────────────────
 // Exports

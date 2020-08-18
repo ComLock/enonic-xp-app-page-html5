@@ -1,7 +1,7 @@
 import {
     doctype, html, head, title, body, div, render
-} from 'render-js';
-//import {toStr} from '/lib/util';
+} from 'render-js/dist/html';
+import {toStr} from '/lib/util';
 import {forceArray} from '/lib/util/data';
 //import {dlv} from '/lib/util/object';
 import {
@@ -9,15 +9,14 @@ import {
     getSiteConfig as getCurrentSiteConfig
 } from '/lib/xp/portal';
 
-
 export function get(req) {
-    //log.info(toStr({req});
-    const siteConfig = getCurrentSiteConfig(); //log.info(toStr({siteConfig}));
-    const content = getCurrentContent(); //log.info(toStr({content}));
+    log.debug(toStr({req}));
+    const siteConfig = getCurrentSiteConfig(); log.debug(toStr({siteConfig}));
+    const content = getCurrentContent(); log.debug(toStr({content}));
     const {displayName} = content;
-    const pageConfig = content.page.config; //log.info(toStr({pageConfig}));
-    const bodyStyleAttribute = siteConfig.bodyStyleAttribute || pageConfig.bodyStyleAttribute; //log.info(toStr({bodyStyleAttribute}));
-    const {components} = content.page.regions.body; //log.info(toStr({components}));
+    const pageConfig = content.page.config; log.debug(toStr({pageConfig}));
+    const bodyStyleAttribute = siteConfig.bodyStyleAttribute || pageConfig.bodyStyleAttribute; log.debug(toStr({bodyStyleAttribute}));
+    const {components} = content.page.regions.body; log.debug(toStr({components}));
     return {
         body: render([
             doctype(),
@@ -26,7 +25,7 @@ export function get(req) {
                 body({
                     style: bodyStyleAttribute
                         ? forceArray(bodyStyleAttribute)
-                            .map(h => h.value ? `${h.property}:${h.value}` : h.property) // eslint-disable-line no-confusing-arrow
+                            .map((h) => h.value ? `${h.property}:${h.value}` : h.property) // eslint-disable-line no-confusing-arrow
                             .join(';')
                         : null
                 }, div(
@@ -34,7 +33,7 @@ export function get(req) {
                         dataPortalRegion: req.mode === 'edit' ? 'body' : null
                     },
                     (components && components.length)
-                        ? components.map(c => `<!--# COMPONENT ${c.path} -->`)
+                        ? components.map((c) => `<!--# COMPONENT ${c.path} -->`)
                         : ''
                 )) // body
             ]) // html
