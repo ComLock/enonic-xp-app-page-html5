@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-    <config>
-        <inline mixin="bodyStyleAttribute"/>
-    </config>
+	<form>
+		<mixin name="bodyStyleAttribute"/>
+		<input name="csp" type="TextLine">
+			<label>Content Security Policy Header</label>
+			<occurrences minimum="0" maximum="1"/>
+		</input>
+	</form>
 </site>

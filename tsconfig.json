@@ -1,0 +1,28 @@
+{
+	"compilerOptions": {
+		"baseUrl": ".",
+		"lib": [
+			"es5"
+		],
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"paths": {
+			// "@enonic/js-utils": ["../enonic-js-utils/src/"],
+			// "@enonic/js-utils/*": ["../enonic-js-utils/src/*"],
+			// "/lib/xp/content": ["./node_modules/@enonic-types/lib-content/content.d.ts"],
+			"/lib/xp/*": ["./node_modules/@enonic-types/lib-*"],
+		},
+		"rootDir": ".",
+		// Even though the setting disables type checking for d.ts files,
+		// TypeScript still type checks the code you specifically
+		// refer to in your application's source code.
+		"skipLibCheck": true, // Disable type checking for node_modules
+		"target": "es5",
+		"types": [
+			"@enonic-types/global"
+		]
+	},
+	"include": [
+		"./src/main/resources/**/*.ts",
+	]
+}
